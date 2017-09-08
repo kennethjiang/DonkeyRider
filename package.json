@@ -1,0 +1,27 @@
+{
+  "name": "DonkeyRider",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native-kill-packager; node node_modules/react-native/local-cli/cli.js start",
+    "android": "react-native run-android",
+    "android:restart": "react-native-kill-packager; react-native run-android",
+    "packager:kill": "react-native-kill-packager",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.48.2",
+    "react-native-sensor-manager": "^0.1.10"
+  },
+  "devDependencies": {
+    "babel-jest": "21.0.0",
+    "babel-preset-react-native": "3.0.2",
+    "jest": "21.0.1",
+    "react-native-kill-packager": "^1.0.0",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
