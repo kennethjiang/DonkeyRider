@@ -1,5 +1,7 @@
 rootProject.name = 'DonkeyRider'
-include ':react-native-sensor-manager'
-project(':react-native-sensor-manager').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sensor-manager/android')
+include ':react-native-motion-manager'
+project(':react-native-motion-manager').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-motion-manager/android')
 
 include ':app'
+include ':react-native-sensor-manager'
+project(':react-native-sensor-manager').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-sensor-manager/android')
