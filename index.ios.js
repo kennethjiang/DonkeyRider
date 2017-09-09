@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 
 var {
-    Gyroscope
+   DeviceMotion
 } = require('NativeModules');
 
 export default class DonkeyRider extends Component {
@@ -28,25 +28,21 @@ export default class DonkeyRider extends Component {
   }
 
   componentDidMount() {
-	Gyroscope.setGyroUpdateInterval(0.1);
-    DeviceEventEmitter.addListener('GyroData', function (data) {
+	DeviceMotion.setDeviceMotionUpdateInterval(0.1);
+    DeviceEventEmitter.addListener('DeviceMotionData', function (data) {
 	  if (!data) {
 		return;
       }
       this.setState({
-        x: data.rotationRate.x.toFixed(5),
-        y: data.rotationRate.y.toFixed(5),
-        z: data.rotationRate.z.toFixed(5)
+        x: data.attitude.roll.toFixed(5),
       });
     }.bind(this));
-	Gyroscope.startGyroUpdates(function (data) {
+	DeviceMotion.startDeviceMotionUpdates(function (data) {
 	  if (!data) {
 		return;
       }
       this.setState({
-        x: data.rotationRate.x.toFixed(5),
-        y: data.rotationRate.y.toFixed(5),
-        z: data.rotationRate.z.toFixed(5)
+        x: data.attitude.roll.toFixed(5),
       });
     }.bind(this));
   }
