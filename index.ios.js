@@ -4,15 +4,53 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
+
 import {
+  DeviceEventEmitter,
   AppRegistry,
   StyleSheet,
   Text,
   View
 } from 'react-native';
 
+var {
+    Gyroscope
+} = require('NativeModules');
+
 export default class DonkeyRider extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {x: 0};
+  }
+
+  componentDidMount() {
+	Gyroscope.setGyroUpdateInterval(0.1);
+    DeviceEventEmitter.addListener('GyroData', function (data) {
+	  if (!data) {
+		return;
+      }
+      this.setState({
+        x: data.rotationRate.x.toFixed(5),
+        y: data.rotationRate.y.toFixed(5),
+        z: data.rotationRate.z.toFixed(5)
+      });
+    }.bind(this));
+	Gyroscope.startGyroUpdates(function (data) {
+	  if (!data) {
+		return;
+      }
+      this.setState({
+        x: data.rotationRate.x.toFixed(5),
+        y: data.rotationRate.y.toFixed(5),
+        z: data.rotationRate.z.toFixed(5)
+      });
+    }.bind(this));
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -20,7 +58,7 @@ export default class DonkeyRider extends Component {
           Welcome to React Native!
         </Text>
         <Text style={styles.instructions}>
-          To get started, edit index.ios.js
+            {this.state.x}
         </Text>
         <Text style={styles.instructions}>
           Press Cmd+R to reload,{'\n'}

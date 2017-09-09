@@ -5,7 +5,9 @@
  */
 'use strict';
 
-var React = require('react-native');
+import React, {
+      Component,
+} from 'react';
 var Button = require('react-native-button');
 var {
   Text,
